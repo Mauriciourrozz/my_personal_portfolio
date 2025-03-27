@@ -554,6 +554,7 @@ body {
   transform: scale(1.1);
 }
 
+/* Responsive adjustments */
 @media (max-width: 480px) {
   .header {
     padding: 8px 10px;
@@ -627,5 +628,12 @@ body {
   
   .skills-container {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+  
+  /* Centramos los íconos sociales en pantallas medianas */
+  .social-icons {
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: row;
   }
 }
