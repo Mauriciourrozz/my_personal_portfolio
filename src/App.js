@@ -286,7 +286,7 @@ function App() {
 
       {/* Sección de Contacto */}
       <section id="contacto" className="section contacto" data-aos="fade-up">
-        <h2 className="section-title">Contactame</h2>
+        <h2 className="section-title">Contacto</h2>
         <form ref={form} className="contact-form" onSubmit={sendEmail}>
           <input type="text" name="user_name" placeholder="Tu nombre" required />
           <input type="email" name="user_email" placeholder="Tu email" required />
