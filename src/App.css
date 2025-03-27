@@ -1,4 +1,4 @@
-/* Variables de color para modo claro y oscuro */
+/* Variables de color */
 :root {
   --primary: #0c5d85;
   --secondary: #1a8cff;
@@ -43,14 +43,14 @@ body.dark-mode {
   color: var(--text);
 }
 
-/* Contenedor general para centrar contenido */
+/* Contenedor general */
 .container {
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Encabezado y navegación */
+/* Encabezado reducido y navegación en línea */
 .main-header {
   position: fixed;
   top: 0;
@@ -60,7 +60,7 @@ body.dark-mode {
   background-size: 200% 200%;
   animation: gradientAnimation 5s ease infinite;
   backdrop-filter: blur(10px);
-  padding: 10px 20px;
+  padding: 5px 20px; /* Menos padding para un header más chico */
   z-index: 100;
   border-bottom: 2px solid var(--secondary);
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
@@ -76,11 +76,11 @@ body.dark-mode {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
   max-width: 1200px;
   margin: 0 auto;
 }
 
+/* Lista de navegación: forzamos siempre inline */
 .nav-list {
   display: flex;
   gap: 10px;
@@ -90,11 +90,11 @@ body.dark-mode {
 .nav-btn {
   background: transparent;
   border: none;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: bold;
   cursor: pointer;
   color: var(--accent);
-  padding: 8px 12px;
+  padding: 6px 10px;
   border-radius: 5px;
   transition: transform 0.3s ease, color 0.3s ease;
 }
@@ -109,7 +109,7 @@ body.dark-mode {
   background: var(--primary);
   border: none;
   color: var(--accent);
-  padding: 8px 12px;
+  padding: 6px 10px;
   border-radius: 5px;
   cursor: pointer;
   transition: background 0.3s ease;
@@ -132,18 +132,18 @@ body.dark-mode {
 
 /* Secciones */
 .section {
-  padding: 100px 20px 50px;
+  padding: 80px 20px 50px;
   text-align: center;
+  margin-top: 60px; /* Espacio para el header fijo */
 }
 
 .section h1, .section h2, .section h3 {
-  text-align: center;
   margin-bottom: 20px;
 }
 
-/* Estilo específico para la sección Bienvenidos */
+/* Estilo para "Bienvenidos" */
 #portfolio-title {
-  font-size: 5rem;
+  font-size: 4rem;
   line-height: 1.2;
   color: #ffffff;
   background: url("images/efecto.jpg") center;
@@ -166,11 +166,6 @@ body.dark-mode {
   color: transparent;
   animation: animate 10s linear infinite;
   margin: 0 auto 20px;
-}
-
-/* Contenido de las secciones con contenedor centralizado */
-.container {
-  margin: 0 auto;
 }
 
 /* Sección Sobre mí */
@@ -415,7 +410,7 @@ body.dark-mode {
   to { transform: scale(1); opacity: 1; }
 }
 
-/* Imagenes y navegación en modal */
+/* Imagen y navegación en modal */
 .image-wrapper {
   display: flex;
   align-items: center;
@@ -456,18 +451,6 @@ body.dark-mode {
   right: 0;
 }
 
-/* Pie de página */
-.main-footer {
-  text-align: center;
-  padding: 20px 0;
-  background: #f8f9fa;
-  color: var(--text);
-}
-.main-footer p {
-  margin: 0;
-  font-size: 0.9rem;
-}
-
 /* Fondo de burbujas */
 .bubble-background {
   position: fixed;
@@ -478,6 +461,7 @@ body.dark-mode {
   z-index: -2;
   overflow: hidden;
 }
+
 .bubble {
   position: absolute;
   bottom: -150px;
@@ -506,25 +490,21 @@ body.dark-mode {
   100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
 }
 
-/* Responsive para móviles */
+/* Ajustes responsive mínimos: en este caso forzamos la lista de navegación en línea */
 @media (max-width: 768px) {
   .main-nav {
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: row; /* Siempre en línea */
+    justify-content: space-between;
   }
+  
   .nav-list {
-    flex-direction: column;
+    flex-direction: row;
     gap: 10px;
-    margin-bottom: 10px;
-  }
-  .toggle-theme {
-    align-self: flex-end;
-    margin-bottom: 10px;
   }
   
   .section {
     width: 95%;
-    padding: 80px 10px 30px;
+    padding: 60px 10px 30px;
   }
   
   .sobre-mi-content {
@@ -556,7 +536,7 @@ body.dark-mode {
   }
 }
 
-/* Asegurar buen contraste en modo oscuro */
+/* Ajustes modo oscuro */
 .dark-theme .nav-btn {
   color: var(--accent);
 }

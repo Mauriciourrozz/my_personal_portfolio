@@ -11,7 +11,7 @@ function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [animateToggle, setAnimateToggle] = useState(false);
 
-  // Array de imágenes para modal de proyectos (si se requiere)
+  // Array de imágenes para el modal de proyectos
   const images = [
     "/images/sesion.jpg",
     "/images/imagen1.jpg",
@@ -111,7 +111,7 @@ function App() {
         ))}
       </div>
 
-      {/* Encabezado y navegación */}
+      {/* Encabezado y navegación (más pequeño y siempre en línea) */}
       <header className="main-header">
         <nav className="main-nav">
           <ul className="nav-list">
@@ -337,10 +337,6 @@ function App() {
         </section>
       </main>
 
-      <footer className="main-footer">
-        <p>&copy; 2025 Mauricio Urroz. Todos los derechos reservados.</p>
-      </footer>
-
       {/* Modal para mensaje de envío */}
       {modalVisible && (
         <div className="modal" data-aos="zoom-in">
@@ -355,11 +351,7 @@ function App() {
 
       {/* Modal para ver imágenes */}
       {modalImagesVisible && (
-        <div
-          className="modal"
-          onClick={() => setModalImagesVisible(false)}
-          data-aos="zoom-in"
-        >
+        <div className="modal" onClick={() => setModalImagesVisible(false)} data-aos="zoom-in">
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="image-wrapper">
               <button className="arrow prev-arrow" onClick={prevImage}>
