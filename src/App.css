@@ -44,6 +44,12 @@ body {
   margin: 0 auto;
 }
 
+/* Regla para indentación de párrafos */
+p {
+  text-indent: 2em;
+  margin: 1em 0;
+}
+
 .container {
   width: 90%;
   max-width: 1200px;
@@ -559,4 +565,70 @@ body {
 
 .social-icons a img:hover {
   transform: scale(1.1);
+}
+
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .inicio {
+    padding: 80px 20px 50px;
+  }
+  #portfolio-title {
+    font-size: 3rem;
+    padding: 0 5px;
+  }
+  .inicio .project-description {
+    font-size: 1.1rem;
+  }
+  
+  .sobre-mi-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .profile-container,
+  .profile-text {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .skills-container {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 15px;
+  }
+  
+  .projects-container {
+    padding: 0 10px;
+  }
+  .project-card {
+    margin: 0 auto;
+  }
+  
+  .contact-form {
+    width: 100%;
+    padding: 0 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header-btn {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+  
+  #portfolio-title {
+    font-size: 2.5rem;
+  }
+  
+  .skill-card, .project-card {
+    padding: 15px;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 0.9rem;
+  }
 }
