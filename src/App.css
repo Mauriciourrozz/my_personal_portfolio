@@ -148,7 +148,7 @@ body {
 }
 
 #portfolio-title {
-  font-size: 5rem;
+  font-size: 4rem; /* se reduce un poco desde 5rem */
   line-height: 1.2;
   background: url("images/efecto.jpg") center;
   background-size: cover;
@@ -158,8 +158,9 @@ body {
   animation: animate 10s linear infinite;
   margin: 0 auto 20px;
   text-align: center;
-  display: block;    
-  width: 100%;   
+  display: block;
+  width: 100%;
+  padding: 0 10px;
 }
 
 @keyframes animate {
@@ -584,6 +585,7 @@ body {
     margin: 0 auto 15px;
     text-align: center;
     width: 100%;
+    padding: 0 5px;
   }
   
   .inicio .project-description {
