@@ -291,9 +291,14 @@ p {
 .profile-text {
   flex: 2;
   animation: fadeInRight 0.8s ease-out;
-  text-align: center;
+  text-align: justify;
   padding: 0 15px;
 }
+
+.sobre-mi p {
+  text-indent: 0;
+}
+
 
 @keyframes slideInLeft {
   from { transform: translateX(-50px); opacity: 0; }
@@ -376,6 +381,19 @@ p {
   color: var(--primary);
   transform: scale(1.05);
 }
+
+/* Regla general para párrafos */
+p {
+  text-indent: 2em;
+  margin: 1em 0;
+}
+
+/* Quitar indentado en párrafos dentro de las tarjetas */
+.skill-card p,
+.project-card p {
+  text-indent: 0;
+}
+
 
 .proyectos {
   padding: 50px 20px;
