@@ -273,7 +273,7 @@ function App() {
               sistemas operativos.
             </p>
             <a
-              href="https://github.com/Mauriciourrozz/holbertonschool-printf"
+              href="https://github.com/Mauriciourrozz/holbertonschool-simple_shell"
               className="project-link"
               target="_blank"
               rel="noopener noreferrer"
