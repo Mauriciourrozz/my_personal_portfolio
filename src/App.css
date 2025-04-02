@@ -632,6 +632,6 @@ body {
 
 @media (max-width: 768px) {
   .project-description {
-    text-align: center;
+    text-align: center !important;
   }
 }
