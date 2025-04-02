@@ -150,7 +150,6 @@ body {
 #portfolio-title {
   font-size: 5rem;
   line-height: 1.2;
-  color: #ffffff;
   background: url("images/efecto.jpg") center;
   background-size: cover;
   background-clip: text;
@@ -158,8 +157,9 @@ body {
   color: transparent;
   animation: animate 10s linear infinite;
   margin: 0 auto 20px;
-  word-wrap: break-word;
   text-align: center;
+  display: block;    
+  width: 100%;   
 }
 
 @keyframes animate {
@@ -582,6 +582,8 @@ body {
   #portfolio-title {
     font-size: 3.5rem;
     margin: 0 auto 15px;
+    text-align: center;
+    width: 100%;
   }
   
   .inicio .project-description {
