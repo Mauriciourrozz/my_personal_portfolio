@@ -148,7 +148,7 @@ body {
 }
 
 #portfolio-title {
-  font-size: 4rem; /* se reduce un poco desde 5rem */
+  font-size: 4rem;
   line-height: 1.2;
   background: url("images/efecto.jpg") center;
   background-size: cover;
@@ -559,89 +559,4 @@ body {
 
 .social-icons a img:hover {
   transform: scale(1.1);
-}
-
-@media (max-width: 480px) {
-  .header {
-    padding: 8px 10px;
-    flex-direction: column;
-  }
-  
-  .header-btn {
-    font-size: 14px;
-    padding: 6px 8px;
-  }
-  
-  .theme-toggle-btn span {
-    font-size: 1.2rem;
-  }
-  
-  .inicio {
-    padding: 80px 10px 30px;
-  }
-  
-  #portfolio-title {
-    font-size: 3rem;
-    margin: 0 auto 15px;
-    text-align: center;
-    width: 100%;
-    padding: 0 5px;
-  }
-  
-  .inicio .project-description {
-    font-size: 1.1rem;
-    padding: 0 10px;
-  }
-  
-  .skills-container {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 10px;
-  }
-  
-  .contact-form input,
-  .contact-form textarea {
-    font-size: 0.9rem;
-    padding: 8px;
-  }
-}
-
-@media (max-width: 768px) {
-  .header {
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  #portfolio-title {
-    font-size: 4rem;
-  }
-  
-  .inicio .project-description {
-    font-size: 1.2rem;
-    padding: 0 15px;
-  }
-  
-  .sobre-mi-content {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .profile-container,
-  .profile-text {
-    width: 100%;
-  }
-  
-  .profile-text {
-    padding: 20px 0 0;
-  }
-  
-  .skills-container {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  }
-}
-
-@media (max-width: 768px) {
-  .project-description {
-    text-align: center !important;
-  }
 }
