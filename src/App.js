@@ -10,6 +10,7 @@ function App() {
   const [modalImagesVisible, setModalImagesVisible] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [animateToggle, setAnimateToggle] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Para el modal de imágenes
   const images = [
@@ -116,28 +117,97 @@ function App() {
 
       {/* Header con navegación y toggle de tema */}
       <header className="header">
-        <div className="header-buttons-container">
-          <button className="header-btn" onClick={() => scrollToSection('inicio')}>
-            Inicio
-          </button>
-          <button className="header-btn" onClick={() => scrollToSection('sobre-mi')}>
-            Sobre mí
-          </button>
-          <button className="header-btn" onClick={() => scrollToSection('habilidades')}>
-            Habilidades
-          </button>
-          <button className="header-btn" onClick={() => scrollToSection('proyectos')}>
-            Mis proyectos
-          </button>
-          <button className="header-btn" onClick={() => scrollToSection('contacto')}>
-            Contacto
+        {/* Versión de escritorio */}
+        <div className="desktop-header">
+          <div className="header-buttons-container">
+            <button className="header-btn" onClick={() => scrollToSection('inicio')}>
+              Inicio
+            </button>
+            <button className="header-btn" onClick={() => scrollToSection('sobre-mi')}>
+              Sobre mí
+            </button>
+            <button className="header-btn" onClick={() => scrollToSection('habilidades')}>
+              Habilidades
+            </button>
+            <button className="header-btn" onClick={() => scrollToSection('proyectos')}>
+              Mis proyectos
+            </button>
+            <button className="header-btn" onClick={() => scrollToSection('contacto')}>
+              Contacto
+            </button>
+          </div>
+          <button className="theme-toggle-btn" onClick={handleThemeToggle}>
+            <span className={animateToggle ? 'rotate-icon' : ''}>
+              {darkMode ? '☀' : '☾'}
+            </span>
           </button>
         </div>
-        <button className="theme-toggle-btn" onClick={handleThemeToggle}>
-          <span className={animateToggle ? 'rotate-icon' : ''}>
-            {darkMode ? '☀' : '☾'}
-          </span>
-        </button>
+
+        {/* Versión móvil */}
+        <div className="mobile-header">
+          <button
+            className="mobile-menu-toggle"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            &#9776;
+          </button>
+          <button className="theme-toggle-btn" onClick={handleThemeToggle}>
+            <span className={animateToggle ? 'rotate-icon' : ''}>
+              {darkMode ? '☀' : '☾'}
+            </span>
+          </button>
+        </div>
+
+        {/* Menú desplegable en móvil */}
+        {mobileMenuOpen && (
+          <div className="mobile-menu">
+            <button
+              className="header-btn"
+              onClick={() => {
+                scrollToSection('inicio');
+                setMobileMenuOpen(false);
+              }}
+            >
+              Inicio
+            </button>
+            <button
+              className="header-btn"
+              onClick={() => {
+                scrollToSection('sobre-mi');
+                setMobileMenuOpen(false);
+              }}
+            >
+              Sobre mí
+            </button>
+            <button
+              className="header-btn"
+              onClick={() => {
+                scrollToSection('habilidades');
+                setMobileMenuOpen(false);
+              }}
+            >
+              Habilidades
+            </button>
+            <button
+              className="header-btn"
+              onClick={() => {
+                scrollToSection('proyectos');
+                setMobileMenuOpen(false);
+              }}
+            >
+              Mis proyectos
+            </button>
+            <button
+              className="header-btn"
+              onClick={() => {
+                scrollToSection('contacto');
+                setMobileMenuOpen(false);
+              }}
+            >
+              Contacto
+            </button>
+          </div>
+        )}
       </header>
 
       {/* Sección Inicio */}

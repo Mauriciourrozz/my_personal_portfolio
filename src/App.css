@@ -11,7 +11,7 @@
 .dark-theme {
   --primary: #0c5d85;
   --secondary: #1a8cff;
-  --accent: #ffffff;  /* Usamos la misma variable para mantener consistencia */
+  --accent: #ffffff;
   --text: #eaeaea;
   --background: #121212;
   --modal-bg: #1e1e1e;
@@ -52,6 +52,7 @@ p {
   margin: 0 auto;
 }
 
+/* Header */
 .header {
   position: fixed;
   top: 0;
@@ -77,6 +78,21 @@ p {
   100% { background-position: 0% 50%; }
 }
 
+/* Versión escritorio */
+.desktop-header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Versión móvil (ocultas por defecto) */
+.mobile-header,
+.mobile-menu {
+  display: none;
+}
+
+/* Botones del header */
 .header-buttons-container {
   display: flex;
   gap: 5px;
@@ -100,7 +116,6 @@ p {
   color: var(--text);
 }
 
-/* Se unifica el color usando la variable */
 .dark-theme .header-btn {
   color: var(--accent);
 }
@@ -134,6 +149,7 @@ p {
   transition: transform 0.5s ease;
 }
 
+/* Secciones */
 .inicio {
   padding: 100px 20px 50px;
   display: flex;
@@ -154,7 +170,6 @@ p {
   justify-content: center;
 }
 
-/* Título "Bienvenidos" unificado para ambos modos */
 #portfolio-title {
   font-size: 4rem;
   line-height: 1.2;
@@ -172,9 +187,9 @@ p {
 }
 
 .dark-theme #portfolio-title {
-  font-size: 4rem;  /* Unificado: 4rem en ambos modos */
+  font-size: 4rem;
   line-height: 1.2;
-  background: url("images/efecto.jpg") center;  /* Se utiliza el mismo fondo */
+  background: url("images/efecto.jpg") center;
   background-size: cover;
   background-clip: text;
   -webkit-background-clip: text;
@@ -212,6 +227,7 @@ p {
   text-align: center;
 }
 
+/* Fondo creativo */
 .creative-background {
   position: fixed;
   top: 0;
@@ -381,13 +397,11 @@ p {
   transform: scale(1.05);
 }
 
-/* Regla general para párrafos */
 p {
   text-indent: 2em;
   margin: 1em 0;
 }
 
-/* Quitar indentado en párrafos dentro de las tarjetas */
 .skill-card p,
 .project-card p {
   text-indent: 0;
@@ -587,17 +601,55 @@ p {
   transform: scale(1.1);
 }
 
+/* Reglas responsive para dispositivos móviles */
 @media screen and (max-width: 768px) {
-  .header {
+  /* Oculta la versión de escritorio */
+  .desktop-header {
+    display: none;
+  }
+  
+  /* Muestra el header móvil */
+  .mobile-header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
     padding: 10px;
-    flex-wrap: wrap;
+  }
+  
+  /* Botón hamburguesa */
+  .mobile-menu-toggle {
+    background: transparent;
+    border: none;
+    font-size: 1.8rem;
+    color: var(--accent);
+    cursor: pointer;
+  }
+  
+  /* Menú desplegable en móvil */
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(90deg, #0a3d5e, #0c5d85);
+    padding: 10px 0;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    z-index: 110;
+  }
+  
+  .mobile-menu .header-btn {
+    margin: 5px 0;
+    width: 90%;
+    font-size: 1rem;
   }
   
   .inicio {
     padding: 80px 20px 50px;
   }
   
-  /* Regla responsive unificada para el título */
   #portfolio-title,
   .dark-theme #portfolio-title {
     font-size: 3rem;
@@ -627,6 +679,7 @@ p {
   .projects-container {
     padding: 0 10px;
   }
+  
   .project-card {
     margin: 0 auto;
   }
