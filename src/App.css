@@ -18,6 +18,7 @@
   --card-bg: #1e1e1e;
 }
 
+/* Global resets */
 * {
   margin: 0;
   padding: 0;
@@ -40,7 +41,7 @@ body {
   margin: 0 auto;
 }
 
-/* Regla para indentación de párrafos */
+/* Indentación de párrafos */
 p {
   text-indent: 2em;
   margin: 1em 0;
@@ -78,7 +79,7 @@ p {
   100% { background-position: 0% 50%; }
 }
 
-/* Versión escritorio */
+/* Desktop header */
 .desktop-header {
   display: flex;
   width: 100%;
@@ -86,7 +87,7 @@ p {
   align-items: center;
 }
 
-/* Versión móvil (ocultas por defecto) */
+/* Mobile header y menú (ocultos por defecto) */
 .mobile-header,
 .mobile-menu {
   display: none;
@@ -108,7 +109,7 @@ p {
   color: var(--accent);
   border-radius: 5px;
   padding: 8px 12px;
-  white-space: normal; 
+  white-space: normal;
 }
 
 .header-btn:hover {
@@ -120,6 +121,14 @@ p {
   color: var(--accent);
 }
 
+/* Contenedor de controles (tema e idioma) */
+.header-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Botón de tema */
 .theme-toggle-btn {
   background: var(--primary);
   border: none;
@@ -134,6 +143,12 @@ p {
   background: var(--secondary);
 }
 
+.theme-toggle-btn span {
+  display: inline-block;
+  font-size: 1.5rem;
+  transition: transform 0.5s ease;
+}
+
 .rotate-icon {
   animation: rotateIcon 0.5s ease;
 }
@@ -143,10 +158,20 @@ p {
   to { transform: rotate(360deg); }
 }
 
-.theme-toggle-btn span {
-  display: inline-block;
-  font-size: 1.5rem;
-  transition: transform 0.5s ease;
+/* Botón de idioma */
+.language-toggle-btn {
+  background: var(--primary);
+  border: none;
+  color: var(--accent);
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-weight: bold;
+}
+
+.language-toggle-btn:hover {
+  background: var(--secondary);
 }
 
 /* Secciones */
@@ -353,15 +378,9 @@ p {
 }
 
 @keyframes pulse {
-  0% {
-    transform: translateY(0) scale(1);
-  }
-  50% {
-    transform: translateY(-5px) scale(1.05);
-  }
-  100% {
-    transform: translateY(0) scale(1);
-  }
+  0% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-5px) scale(1.05); }
+  100% { transform: translateY(0) scale(1); }
 }
 
 .skill-logo {
@@ -601,14 +620,12 @@ p {
   transform: scale(1.1);
 }
 
-/* Reglas responsive para dispositivos móviles */
+/* Responsive styles */
 @media screen and (max-width: 768px) {
-  /* Oculta la versión de escritorio */
   .desktop-header {
     display: none;
   }
   
-  /* Muestra el header móvil */
   .mobile-header {
     display: flex;
     width: 100%;
@@ -617,7 +634,6 @@ p {
     padding: 10px;
   }
   
-  /* Botón hamburguesa */
   .mobile-menu-toggle {
     background: transparent;
     border: none;
@@ -626,7 +642,6 @@ p {
     cursor: pointer;
   }
   
-  /* Menú desplegable en móvil */
   .mobile-menu {
     display: flex;
     flex-direction: column;
@@ -683,18 +698,22 @@ p {
   .project-card {
     margin: 0 auto;
   }
-
-  .project-card .project-link {
-      margin-top: 15px;
-  }
   
+  .project-card .project-link {
+    margin-top: 15px;
+  }
   
   .contact-form {
     width: 100%;
     padding: 0 10px;
   }
+  
+  /* En mobile, se apilan los controles de tema e idioma */
+  .header-controls {
+    flex-direction: column;
+    gap: 5px;
+  }
 }
-
 
 @media screen and (max-width: 480px) {
   .header-btn {

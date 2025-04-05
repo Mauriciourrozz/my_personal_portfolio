@@ -11,8 +11,113 @@ function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [animateToggle, setAnimateToggle] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [language, setLanguage] = useState("es");
 
-  // Para el modal de imágenes
+  // Objeto de traducciones para español e inglés
+  const translations = {
+    es: {
+      header: {
+        inicio: "Inicio",
+        sobreMi: "Sobre mí",
+        habilidades: "Habilidades",
+        proyectos: "Mis proyectos",
+        contacto: "Contacto",
+      },
+      home: {
+        welcome: "Bienvenidos",
+        description: "Soy Mauricio, desarrollador de software. Te invito a conocerme un poco más.",
+        button: "Conóceme"
+      },
+      about: {
+        title: "Sobre mí",
+        p1: "Mi nombre es Mauricio Urroz, tengo 22 años y soy de Montevideo, Uruguay. Estoy en el mundo de la tecnología desde hace aproximadamente un año. Comencé estudiando en Holberton School, donde fue mi primera experiencia formal en este ámbito, lo que despertó aún más mi pasión.",
+        p2: "Me gradué de la carrera Fundamentos de software el pasado 21 de marzo, pero eso fue solo el comienzo. En un mundo donde el aprendizaje nunca termina, mi objetivo es seguir capacitándome y creciendo profesionalmente.",
+        p3: "Actualmente, me encuentro realizando una especialización en Machine Learning en Holberton, con el objetivo de aprender cosas nuevas, sin dejar de explorar otras áreas tecnológicas."
+      },
+      skills: {
+        title: "Habilidades y Tecnologías",
+        tech: "Tecnologías",
+        tools: "Herramientas"
+      },
+      projects: {
+        title: "Mis proyectos",
+        project1Title: "Proyecto RCD Reciclaje",
+        project1Desc1: "Proyecto final de Holberton Uruguay para la empresa RCD Reciclaje. Desarrollamos un sistema de gestión que automatiza la recolección y reciclaje de residuos de obras de construcción.",
+        project1Desc2: "Mi rol fue de Backend Developer, utilizando Python y Django. Trabajando en equipo, logramos cumplir el MVP propuesto y ayudar a la empresa a incursionar en el mundo tecnológico.",
+        project1Desc3: "Esta experiencia nos enseñó a gestionar el tiempo, organizar tareas y adaptarnos a las necesidades del cliente en un plazo de un mes.",
+        viewRepo: "Ver repositorio",
+        viewImages: "Ver imágenes",
+        project2Title: "HBNB",
+        project2Desc: "Proyecto del segundo trimestre en Holberton. Se creó una plataforma para alquilar espacios (similar a AirBnb), utilizando Python, Flask y un frontend en HTML, CSS y JavaScript.",
+        project3Title: "Simple Shell",
+        project3Desc: "Realizado en el primer trimestre de Holberton con lenguaje C. El objetivo fue crear una consola para recibir comandos, lo que me permitió comprender el manejo de procesos en sistemas operativos."
+      },
+      contact: {
+        title: "Contacto",
+        placeholderName: "Tu nombre",
+        placeholderEmail: "Tu email",
+        placeholderSubject: "Asunto",
+        placeholderMessage: "Tu mensaje",
+        send: "Enviar mensaje",
+        modalMessage: "¡Mensaje enviado correctamente!"
+      },
+      buttons: {
+        close: "Cerrar"
+      }
+    },
+    en: {
+      header: {
+        inicio: "Home",
+        sobreMi: "About",
+        habilidades: "Skills",
+        proyectos: "Projects",
+        contacto: "Contact",
+      },
+      home: {
+        welcome: "Welcome",
+        description: "I'm Mauricio, a software developer. I invite you to get to know me a little more.",
+        button: "Get to know me"
+      },
+      about: {
+        title: "About Me",
+        p1: "My name is Mauricio Urroz, I am 22 years old and from Montevideo, Uruguay. I've been in the tech world for about a year. I started studying at Holberton School, where I had my first formal experience, which further ignited my passion.",
+        p2: "I graduated from the Software Fundamentals course on March 21st, but that was just the beginning. In a world where learning never stops, my goal is to keep improving and growing professionally.",
+        p3: "I'm currently specializing in Machine Learning at Holberton, aiming to learn new things while also exploring other tech fields."
+      },
+      skills: {
+        title: "Skills and Technologies",
+        tech: "Technologies",
+        tools: "Tools"
+      },
+      projects: {
+        title: "My Projects",
+        project1Title: "RCD Recycling Project",
+        project1Desc1: "Final project for Holberton Uruguay for RCD Recycling. We developed a management system that automates the collection and recycling of construction waste.",
+        project1Desc2: "My role was as a Backend Developer, using Python and Django. Working as a team, we met the proposed MVP and helped the company enter the tech world.",
+        project1Desc3: "This experience taught us time management, task organization, and adapting to client needs within a one-month timeframe.",
+        viewRepo: "View repository",
+        viewImages: "View images",
+        project2Title: "HBNB",
+        project2Desc: "Project for the second quarter at Holberton. A platform was created to rent spaces (similar to AirBnb) using Python, Flask, and a frontend in HTML, CSS, and JavaScript.",
+        project3Title: "Simple Shell",
+        project3Desc: "Created in the first quarter at Holberton using C. The goal was to build a shell to execute commands, which allowed me to understand process management in operating systems."
+      },
+      contact: {
+        title: "Contact",
+        placeholderName: "Your name",
+        placeholderEmail: "Your email",
+        placeholderSubject: "Subject",
+        placeholderMessage: "Your message",
+        send: "Send message",
+        modalMessage: "Message sent successfully!"
+      },
+      buttons: {
+        close: "Close"
+      }
+    }
+  };
+
+  // Resto del código original
   const images = [
     "/images/sesion.jpg",
     "/images/imagen1.jpg",
@@ -23,12 +128,10 @@ function App() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
-    // Inicializa AOS para animaciones en scroll
     AOS.init({ duration: 1000, once: true });
   }, []);
 
   useEffect(() => {
-    // Aplica la clase para el tema oscuro en el elemento raíz
     const rootElement = document.documentElement;
     if (darkMode) {
       rootElement.classList.add('dark-theme');
@@ -42,7 +145,7 @@ function App() {
     setDarkMode((prev) => !prev);
     setTimeout(() => {
       setAnimateToggle(false);
-    }, 500); // Duración de la animación en milisegundos
+    }, 500);
   };
 
   const scrollToSection = (sectionId) => {
@@ -101,7 +204,6 @@ function App() {
     );
   };
 
-  // Opcional: Al abrir el modal de imágenes, reiniciamos el índice a 0
   useEffect(() => {
     if (modalImagesVisible) setCurrentImageIndex(0);
   }, [modalImagesVisible]);
@@ -115,35 +217,41 @@ function App() {
         ))}
       </div>
 
-      {/* Header con navegación y toggle de tema */}
+      {/* Header con navegación, toggle de tema y cambio de idioma */}
       <header className="header">
-        {/* Versión de escritorio */}
         <div className="desktop-header">
           <div className="header-buttons-container">
             <button className="header-btn" onClick={() => scrollToSection('inicio')}>
-              Inicio
+              {translations[language].header.inicio}
             </button>
             <button className="header-btn" onClick={() => scrollToSection('sobre-mi')}>
-              Sobre mí
+              {translations[language].header.sobreMi}
             </button>
             <button className="header-btn" onClick={() => scrollToSection('habilidades')}>
-              Habilidades
+              {translations[language].header.habilidades}
             </button>
             <button className="header-btn" onClick={() => scrollToSection('proyectos')}>
-              Mis proyectos
+              {translations[language].header.proyectos}
             </button>
             <button className="header-btn" onClick={() => scrollToSection('contacto')}>
-              Contacto
+              {translations[language].header.contacto}
             </button>
           </div>
-          <button className="theme-toggle-btn" onClick={handleThemeToggle}>
-            <span className={animateToggle ? 'rotate-icon' : ''}>
-              {darkMode ? '☀' : '☾'}
-            </span>
-          </button>
+          <div className="header-controls">
+            <button className="theme-toggle-btn" onClick={handleThemeToggle}>
+              <span className={animateToggle ? 'rotate-icon' : ''}>
+                {darkMode ? '☀' : '☾'}
+              </span>
+            </button>
+            <button
+              className="language-toggle-btn"
+              onClick={() => setLanguage(language === "es" ? "en" : "es")}
+            >
+              {language === "es" ? "EN" : "ES"}
+            </button>
+          </div>
         </div>
 
-        {/* Versión móvil */}
         <div className="mobile-header">
           <button
             className="mobile-menu-toggle"
@@ -151,14 +259,21 @@ function App() {
           >
             &#9776;
           </button>
-          <button className="theme-toggle-btn" onClick={handleThemeToggle}>
-            <span className={animateToggle ? 'rotate-icon' : ''}>
-              {darkMode ? '☀' : '☾'}
-            </span>
-          </button>
+          <div className="header-controls">
+            <button className="theme-toggle-btn" onClick={handleThemeToggle}>
+              <span className={animateToggle ? 'rotate-icon' : ''}>
+                {darkMode ? '☀' : '☾'}
+              </span>
+            </button>
+            <button
+              className="language-toggle-btn"
+              onClick={() => setLanguage(language === "es" ? "en" : "es")}
+            >
+              {language === "es" ? "EN" : "ES"}
+            </button>
+          </div>
         </div>
 
-        {/* Menú desplegable en móvil */}
         {mobileMenuOpen && (
           <div className="mobile-menu">
             <button
@@ -168,7 +283,7 @@ function App() {
                 setMobileMenuOpen(false);
               }}
             >
-              Inicio
+              {translations[language].header.inicio}
             </button>
             <button
               className="header-btn"
@@ -177,7 +292,7 @@ function App() {
                 setMobileMenuOpen(false);
               }}
             >
-              Sobre mí
+              {translations[language].header.sobreMi}
             </button>
             <button
               className="header-btn"
@@ -186,7 +301,7 @@ function App() {
                 setMobileMenuOpen(false);
               }}
             >
-              Habilidades
+              {translations[language].header.habilidades}
             </button>
             <button
               className="header-btn"
@@ -195,7 +310,7 @@ function App() {
                 setMobileMenuOpen(false);
               }}
             >
-              Mis proyectos
+              {translations[language].header.proyectos}
             </button>
             <button
               className="header-btn"
@@ -204,7 +319,7 @@ function App() {
                 setMobileMenuOpen(false);
               }}
             >
-              Contacto
+              {translations[language].header.contacto}
             </button>
           </div>
         )}
@@ -214,14 +329,14 @@ function App() {
       <section id="inicio" className="section inicio" data-aos="fade-up">
         <div className="intro-content">
           <h1 id="portfolio-title" className="title color3" data-aos="fade-down">
-            Bienvenidos
+            {translations[language].home.welcome}
           </h1>
           <p className="project-description" style={{ textAlign: 'center' }}>
-            Soy Mauricio, desarrollador de software. Te invito a conocerme un poco más.
+            {translations[language].home.description}
           </p>
           <div className="intro-buttons">
             <button className="btn conoceme" onClick={() => scrollToSection('sobre-mi')}>
-              Conóceme
+              {translations[language].home.button}
             </button>
           </div>
         </div>
@@ -229,7 +344,7 @@ function App() {
 
       {/* Sección Sobre mí */}
       <section id="sobre-mi" className="section sobre-mi" data-aos="fade-up">
-        <h2 className="section-title">Sobre mí</h2>
+        <h2 className="section-title">{translations[language].about.title}</h2>
         <div className="sobre-mi-content">
           <div className="profile-container" data-aos="fade-right">
             <img
@@ -240,20 +355,13 @@ function App() {
           </div>
           <div className="profile-text" data-aos="fade-left">
             <p className="section-content">
-              Mi nombre es Mauricio Urroz, tengo 22 años y soy de Montevideo, Uruguay.
-              Estoy en el mundo de la tecnología desde hace aproximadamente un año. Comencé
-              estudiando en Holberton School, donde fue mi primera experiencia estudiando formalmente 
-              esta habilidad, a medida que avanzaba la carrera, la
-              exigencia y la cantidad de contenido aumentaron, lo que despertó aún más mi pasión.
+              {translations[language].about.p1}
             </p>
             <p className="section-content">
-              Me gradué de la carrera Fundamentos de software el pasado 21 de marzo, pero eso solamente fue el comienzo,
-              en un mundo donde el aprendizaje nunca termina, mi objetivo es seguir capacitándome para continuar creciendo profesionalmente.
+              {translations[language].about.p2}
             </p>
             <p className="section-content">
-              Actualmente, me encuentro realizando una especialización de Machine Learning en Holberton, 
-              con el objetivo de aprender cosas nuevas, aunque me gusta explorar otras
-              áreas tecnológicas para estar siempre en constante aprendizaje.
+              {translations[language].about.p3}
             </p>
           </div>
         </div>
@@ -261,8 +369,8 @@ function App() {
 
       {/* Sección Habilidades y Tecnologías */}
       <section id="habilidades" className="section habilidades" data-aos="fade-up">
-        <h2 className="section-title">Habilidades y Tecnologías</h2>
-        <h3 className="subsection-title">Tecnologías</h3>
+        <h2 className="section-title">{translations[language].skills.title}</h2>
+        <h3 className="subsection-title">{translations[language].skills.tech}</h3>
         <div className="skills-container">
           {tecnologias.map((tech, index) => (
             <div
@@ -276,7 +384,7 @@ function App() {
             </div>
           ))}
         </div>
-        <h3 className="subsection-title">Herramientas</h3>
+        <h3 className="subsection-title">{translations[language].skills.tools}</h3>
         <div className="skills-container">
           {herramientas.map((tool, index) => (
             <div key={index} className="skill-card" data-aos="zoom-in" data-aos-delay={index * 50}>
@@ -289,23 +397,18 @@ function App() {
 
       {/* Sección Mis proyectos */}
       <section id="proyectos" className="section proyectos" data-aos="fade-up">
-        <h2 className="section-title">Mis proyectos</h2>
+        <h2 className="section-title">{translations[language].projects.title}</h2>
         <div className="projects-container">
           <div className="project-card" data-aos="fade-up">
-            <h3 className="project-title">Proyecto RCD Reciclaje</h3>
+            <h3 className="project-title">{translations[language].projects.project1Title}</h3>
             <p className="project-description">
-              Proyecto final de Holberton Uruguay para la empresa RCD Reciclaje. Desarrollamos
-              un sistema de gestión que automatiza procesos de recolección y reciclaje de residuos
-              de obras de construcción.
+              {translations[language].projects.project1Desc1}
             </p>
             <p className="project-description">
-              Mi rol fue de Backend Developer, utilizando Python y Django. Trabajando en equipo,
-              logramos cumplir el MVP propuesto, ayudando a la empresa a incursionar en el mundo
-              tecnológico.
+              {translations[language].projects.project1Desc2}
             </p>
             <p className="project-description">
-              Esta experiencia nos enseñó a gestionar el tiempo, organizar tareas y adaptarnos a las
-              necesidades del cliente en un plazo de un mes.
+              {translations[language].projects.project1Desc3}
             </p>
             <a
               href="https://github.com/orgs/RCD-Project/repositories"
@@ -313,18 +416,16 @@ function App() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Ver repositorio
+              {translations[language].projects.viewRepo}
             </a>
             <button className="btn" onClick={() => setModalImagesVisible(true)}>
-              Ver imágenes
+              {translations[language].projects.viewImages}
             </button>
           </div>
           <div className="project-card" data-aos="fade-up" data-aos-delay="100">
-            <h3 className="project-title">HBNB</h3>
+            <h3 className="project-title">{translations[language].projects.project2Title}</h3>
             <p className="project-description">
-              Proyecto del segundo trimestre en Holberton. Se creó una plataforma para alquilar
-              espacios (similar a AirBnb), utilizando Python, Flask y una integración con un frontend
-              en HTML, CSS y JavaScript.
+              {translations[language].projects.project2Desc}
             </p>
             <a
               href="https://github.com/Mauriciourrozz/holbertonschool-hbnb"
@@ -332,15 +433,13 @@ function App() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Ver repositorio
+              {translations[language].projects.viewRepo}
             </a>
           </div>
           <div className="project-card" data-aos="fade-up" data-aos-delay="200">
-            <h3 className="project-title">Simple Shell</h3>
+            <h3 className="project-title">{translations[language].projects.project3Title}</h3>
             <p className="project-description">
-              Realizado en el primer trimestre de Holberton con lenguaje C. El objetivo fue crear una
-              consola para recibir comandos, lo que me permitió comprender el manejo de procesos en
-              sistemas operativos.
+              {translations[language].projects.project3Desc}
             </p>
             <a
               href="https://github.com/Mauriciourrozz/holbertonschool-simple_shell"
@@ -348,7 +447,7 @@ function App() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Ver repositorio
+              {translations[language].projects.viewRepo}
             </a>
           </div>
         </div>
@@ -356,14 +455,14 @@ function App() {
 
       {/* Sección de Contacto */}
       <section id="contacto" className="section contacto" data-aos="fade-up">
-        <h2 className="section-title">Contacto</h2>
+        <h2 className="section-title">{translations[language].contact.title}</h2>
         <form ref={form} className="contact-form" onSubmit={sendEmail}>
-          <input type="text" name="user_name" placeholder="Tu nombre" required />
-          <input type="email" name="user_email" placeholder="Tu email" required />
-          <input type="text" name="subject" placeholder="Asunto" required />
-          <textarea name="message" placeholder="Tu mensaje" rows="5" required />
+          <input type="text" name="user_name" placeholder={translations[language].contact.placeholderName} required />
+          <input type="email" name="user_email" placeholder={translations[language].contact.placeholderEmail} required />
+          <input type="text" name="subject" placeholder={translations[language].contact.placeholderSubject} required />
+          <textarea name="message" placeholder={translations[language].contact.placeholderMessage} rows="5" required />
           <button type="submit" className="btn">
-            Enviar mensaje
+            {translations[language].contact.send}
           </button>
         </form>
       </section>
@@ -372,9 +471,9 @@ function App() {
       {modalVisible && (
         <div className="modal" data-aos="zoom-in">
           <div className="modal-content">
-            <p>¡Mensaje enviado correctamente!</p>
+            <p>{translations[language].contact.modalMessage}</p>
             <button className="btn" onClick={() => setModalVisible(false)}>
-              Cerrar
+              {translations[language].buttons.close}
             </button>
           </div>
         </div>
@@ -394,7 +493,7 @@ function App() {
               </button>
             </div>
             <button className="btn" onClick={() => setModalImagesVisible(false)}>
-              Cerrar
+              {translations[language].buttons.close}
             </button>
           </div>
         </div>
