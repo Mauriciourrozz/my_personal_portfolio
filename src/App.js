@@ -409,16 +409,6 @@ function App() {
         >
           <img src="/images/linkedin.png" alt="LinkedIn" />
         </a>
-        <a href="https://wa.me/59899276608" target="_blank" rel="noopener noreferrer">
-          <img src="/images/whatsapp.png" alt="WhatsApp" />
-        </a>
-        <a
-          href="https://www.instagram.com/_mauri.urroz_/profilecard/?igsh=endmenNmMDgwbTh2"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="/images/instagram.png" alt="Instagram" />
-        </a>
         <a href="https://github.com/Mauriciourrozz" target="_blank" rel="noopener noreferrer">
           <img src="/images/github.png" alt="GitHub" />
         </a>
