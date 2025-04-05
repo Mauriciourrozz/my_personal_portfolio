@@ -683,12 +683,20 @@ p {
   .project-card {
     margin: 0 auto;
   }
+
+  @media screen and (max-width: 768px) {
+    .project-card .project-link {
+      margin-top: 15px;
+    }
+  }
+  
   
   .contact-form {
     width: 100%;
     padding: 0 10px;
   }
 }
+
 
 @media screen and (max-width: 480px) {
   .header-btn {
