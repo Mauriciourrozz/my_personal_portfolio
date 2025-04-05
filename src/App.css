@@ -11,15 +11,11 @@
 .dark-theme {
   --primary: #0c5d85;
   --secondary: #1a8cff;
-  --accent: #1a1a1a;
+  --accent: #ffffff;  /* Usamos la misma variable para mantener consistencia */
   --text: #eaeaea;
   --background: #121212;
   --modal-bg: #1e1e1e;
   --card-bg: #1e1e1e;
-}
-
-.dark-theme .header-btn {
-  color: #ffffff;
 }
 
 * {
@@ -104,6 +100,11 @@ p {
   color: var(--text);
 }
 
+/* Se unifica el color usando la variable */
+.dark-theme .header-btn {
+  color: var(--accent);
+}
+
 .theme-toggle-btn {
   background: var(--primary);
   border: none;
@@ -153,6 +154,7 @@ p {
   justify-content: center;
 }
 
+/* Título "Bienvenidos" unificado para ambos modos */
 #portfolio-title {
   font-size: 4rem;
   line-height: 1.2;
@@ -169,25 +171,23 @@ p {
   padding: 0 10px;
 }
 
-@keyframes animate {
-  to {
-    background-position-x: -200px;
-  }
-}
-
-.dark-theme #portfolio-title{
-  font-size: 5rem;
+.dark-theme #portfolio-title {
+  font-size: 4rem;  /* Unificado: 4rem en ambos modos */
   line-height: 1.2;
-  color: #ffffff;
-  background: url("images/efecto2.jpg") center;
+  background: url("images/efecto.jpg") center;  /* Se utiliza el mismo fondo */
   background-size: cover;
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
   animation: animate 10s linear infinite;
   margin: 0 auto 20px;
-  word-wrap: break-word;
   text-align: center;
+}
+
+@keyframes animate {
+  to {
+    background-position-x: -200px;
+  }
 }
 
 .inicio .project-description {
@@ -299,7 +299,6 @@ p {
   text-indent: 0;
 }
 
-
 @keyframes slideInLeft {
   from { transform: translateX(-50px); opacity: 0; }
   to { transform: translateX(0); opacity: 1; }
@@ -393,7 +392,6 @@ p {
 .project-card p {
   text-indent: 0;
 }
-
 
 .proyectos {
   padding: 50px 20px;
@@ -589,7 +587,6 @@ p {
   transform: scale(1.1);
 }
 
-
 @media screen and (max-width: 768px) {
   .header {
     padding: 10px;
@@ -599,10 +596,14 @@ p {
   .inicio {
     padding: 80px 20px 50px;
   }
-  #portfolio-title {
+  
+  /* Regla responsive unificada para el título */
+  #portfolio-title,
+  .dark-theme #portfolio-title {
     font-size: 3rem;
     padding: 0 5px;
   }
+  
   .inicio .project-description {
     font-size: 1.1rem;
   }
@@ -611,6 +612,7 @@ p {
     flex-direction: column;
     gap: 20px;
   }
+  
   .profile-container,
   .profile-text {
     width: 100%;
@@ -641,7 +643,8 @@ p {
     padding: 6px 10px;
   }
   
-  #portfolio-title {
+  #portfolio-title,
+  .dark-theme #portfolio-title {
     font-size: 2.5rem;
   }
   
