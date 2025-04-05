@@ -10,8 +10,9 @@ function App() {
   const [modalImagesVisible, setModalImagesVisible] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [animateToggle, setAnimateToggle] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false); // Estado para el menú mobile
 
-  // Para el modal de imágenes
+  // Imágenes para el modal
   const images = [
     "/images/sesion.jpg",
     "/images/imagen1.jpg",
@@ -22,12 +23,10 @@ function App() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
-    // Inicializa AOS para animaciones en scroll
     AOS.init({ duration: 1000, once: true });
   }, []);
 
   useEffect(() => {
-    // Aplica la clase para el tema oscuro en el elemento raíz
     const rootElement = document.documentElement;
     if (darkMode) {
       rootElement.classList.add('dark-theme');
@@ -41,16 +40,19 @@ function App() {
     setDarkMode((prev) => !prev);
     setTimeout(() => {
       setAnimateToggle(false);
-    }, 500); // Duración de la animación en milisegundos
+    }, 500);
   };
 
   const scrollToSection = (sectionId) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const toggleMenu = () => {
+    setMenuOpen((prev) => !prev);
+  };
+
   const sendEmail = (e) => {
     e.preventDefault();
-
     emailjs
       .sendForm(
         'service_uon95z9',
@@ -100,7 +102,6 @@ function App() {
     );
   };
 
-  // Opcional: Al abrir el modal de imágenes, reiniciamos el índice a 0
   useEffect(() => {
     if (modalImagesVisible) setCurrentImageIndex(0);
   }, [modalImagesVisible]);
@@ -114,30 +115,47 @@ function App() {
         ))}
       </div>
 
-      {/* Header con navegación y toggle de tema */}
+      {/* HEADER */}
       <header className="header">
-        <div className="header-buttons-container">
-          <button className="header-btn" onClick={() => scrollToSection('inicio')}>
+        {/* Bloque para vista mobile */}
+        <div className="mobile-header">
+          <button className="hamburger" onClick={toggleMenu}>
+            ☰
+          </button>
+          <button className="theme-toggle-btn" onClick={handleThemeToggle}>
+            <span className={animateToggle ? 'rotate-icon' : ''}>
+              {darkMode ? '☀' : '☾'}
+            </span>
+          </button>
+        </div>
+
+        {/* Menú de navegación */}
+        <div className={`header-buttons-container ${menuOpen ? 'open' : ''}`}>
+          <button className="header-btn" onClick={() => { scrollToSection('inicio'); setMenuOpen(false); }}>
             Inicio
           </button>
-          <button className="header-btn" onClick={() => scrollToSection('sobre-mi')}>
+          <button className="header-btn" onClick={() => { scrollToSection('sobre-mi'); setMenuOpen(false); }}>
             Sobre mí
           </button>
-          <button className="header-btn" onClick={() => scrollToSection('habilidades')}>
+          <button className="header-btn" onClick={() => { scrollToSection('habilidades'); setMenuOpen(false); }}>
             Habilidades
           </button>
-          <button className="header-btn" onClick={() => scrollToSection('proyectos')}>
+          <button className="header-btn" onClick={() => { scrollToSection('proyectos'); setMenuOpen(false); }}>
             Mis proyectos
           </button>
-          <button className="header-btn" onClick={() => scrollToSection('contacto')}>
+          <button className="header-btn" onClick={() => { scrollToSection('contacto'); setMenuOpen(false); }}>
             Contacto
           </button>
         </div>
-        <button className="theme-toggle-btn" onClick={handleThemeToggle}>
-          <span className={animateToggle ? 'rotate-icon' : ''}>
-            {darkMode ? '☀' : '☾'}
-          </span>
-        </button>
+
+        {/* Bloque para desktop: botón de tema */}
+        <div className="desktop-theme-toggle">
+          <button className="theme-toggle-btn" onClick={handleThemeToggle}>
+            <span className={animateToggle ? 'rotate-icon' : ''}>
+              {darkMode ? '☀' : '☾'}
+            </span>
+          </button>
+        </div>
       </header>
 
       {/* Sección Inicio */}

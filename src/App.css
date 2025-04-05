@@ -11,7 +11,7 @@
 .dark-theme {
   --primary: #0c5d85;
   --secondary: #1a8cff;
-  --accent: #ffffff;  /* Usamos la misma variable para mantener consistencia */
+  --accent: #ffffff;
   --text: #eaeaea;
   --background: #121212;
   --modal-bg: #1e1e1e;
@@ -40,7 +40,6 @@ body {
   margin: 0 auto;
 }
 
-/* Regla para indentación de párrafos */
 p {
   text-indent: 2em;
   margin: 1em 0;
@@ -92,7 +91,7 @@ p {
   color: var(--accent);
   border-radius: 5px;
   padding: 8px 12px;
-  white-space: normal; 
+  white-space: normal;
 }
 
 .header-btn:hover {
@@ -100,7 +99,7 @@ p {
   color: var(--text);
 }
 
-/* Se unifica el color usando la variable */
+/* Unificar color en modo oscuro usando la variable */
 .dark-theme .header-btn {
   color: var(--accent);
 }
@@ -154,7 +153,6 @@ p {
   justify-content: center;
 }
 
-/* Título "Bienvenidos" unificado para ambos modos */
 #portfolio-title {
   font-size: 4rem;
   line-height: 1.2;
@@ -172,9 +170,9 @@ p {
 }
 
 .dark-theme #portfolio-title {
-  font-size: 4rem;  /* Unificado: 4rem en ambos modos */
+  font-size: 4rem;
   line-height: 1.2;
-  background: url("images/efecto.jpg") center;  /* Se utiliza el mismo fondo */
+  background: url("images/efecto.jpg") center;
   background-size: cover;
   background-clip: text;
   -webkit-background-clip: text;
@@ -337,15 +335,9 @@ p {
 }
 
 @keyframes pulse {
-  0% {
-    transform: translateY(0) scale(1);
-  }
-  50% {
-    transform: translateY(-5px) scale(1.05);
-  }
-  100% {
-    transform: translateY(0) scale(1);
-  }
+  0% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-5px) scale(1.05); }
+  100% { transform: translateY(0) scale(1); }
 }
 
 .skill-logo {
@@ -381,13 +373,11 @@ p {
   transform: scale(1.05);
 }
 
-/* Regla general para párrafos */
 p {
   text-indent: 2em;
   margin: 1em 0;
 }
 
-/* Quitar indentado en párrafos dentro de las tarjetas */
 .skill-card p,
 .project-card p {
   text-indent: 0;
@@ -587,56 +577,56 @@ p {
   transform: scale(1.1);
 }
 
+/* Estilos para vista responsive */
 @media screen and (max-width: 768px) {
   .header {
-    padding: 10px;
-    flex-wrap: wrap;
-  }
-  
-  .inicio {
-    padding: 80px 20px 50px;
-  }
-  
-  /* Regla responsive unificada para el título */
-  #portfolio-title,
-  .dark-theme #portfolio-title {
-    font-size: 3rem;
-    padding: 0 5px;
-  }
-  
-  .inicio .project-description {
-    font-size: 1.1rem;
-  }
-  
-  .sobre-mi-content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0;
+    display: flex;
     flex-direction: column;
-    gap: 20px;
+    align-items: stretch;
+    justify-content: flex-start;
+    z-index: 100;
   }
   
-  .profile-container,
-  .profile-text {
+  .mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
     width: 100%;
-    text-align: center;
+    background: linear-gradient(90deg, #0a3d5e, #0c5d85);
   }
   
-  .skills-container {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 15px;
+  .desktop-theme-toggle {
+    display: none;
   }
   
-  .projects-container {
-    padding: 0 10px;
-  }
-  .project-card {
-    margin: 0 auto;
-  }
-  
-  .contact-form {
+  .header-buttons-container {
+    flex-direction: column;
+    display: none;
+    background: var(--background);
     width: 100%;
-    padding: 0 10px;
+  }
+  
+  .header-buttons-container.open {
+    display: flex;
+  }
+  
+  .header-btn {
+    padding: 15px;
+    border-bottom: 1px solid var(--primary);
+    width: 100%;
+    text-align: left;
+    padding-left: 20px;
+    background: transparent;
   }
 }
 
+/* Vista en móviles pequeños */
 @media screen and (max-width: 480px) {
   .header-btn {
     font-size: 13px;
