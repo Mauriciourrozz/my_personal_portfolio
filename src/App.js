@@ -412,6 +412,10 @@ function App() {
         <a href="https://github.com/Mauriciourrozz" target="_blank" rel="noopener noreferrer">
           <img src="/images/github.png" alt="GitHub" />
         </a>
+        <a
+          href="mailto:mauriciourrozz@gmail.com" target="_blank" rel="noopener noreferrer">
+          <img src="/images/email.png" alt="Email" />
+        </a>
       </div>
     </div>
   );
